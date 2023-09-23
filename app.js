@@ -6,15 +6,15 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 
-//const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/privkey.pem','utf8');
-//const certificate = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/cert.pem','utf8');
-//const ca = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/chain.pem','utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/privkey.pem','utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/cert.pem','utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/vps.isi-net.org/chain.pem','utf8');
 
-///const credentials = {
-	//key: privateKey,
-	//cert: certificate,
-  //ca: ca
-//};
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+  ca: ca
+};
 
 const api = express();
 api.use(bodyParser.urlencoded({ extended: false }))
@@ -25,21 +25,22 @@ api.use(cors({
 
 
 const dbase_gisting = require('./database_config.js'); 
-dbase_gisting.query(`CREATE TABLE IF NOT EXISTS sensor_data (
-  time TIMESTAMP NOT NULL,  
-  humidity FLOAT, 
-  pressure_280 FLOAT, 
-  temperature_280 FLOAT,
-  temperature_388 FLOAT,
-  pressure_388,
-  phsensor FLOAT, 
-  tdsSensor FLOAT,
-  soilMoisture FLOAT,
-  anemoMeter FLOAT,
-  WindDirection FLOAT,
-  CurrentSensor FLOAT,
-  RainIntensity FLOAT,
-  RainStatus FLOAT)
+dbase_gisting.query(`create table if not exists sensor_data (
+  datetime timestamp not null, 
+  humidity_280 float, 
+  pressure_280 float, 
+  temperature_280 float, 
+  temperature_388 float, 
+  pressure_388 float, 
+  phsensor float, 
+  tdsSensor float, 
+  moistureSensor float, 
+  anemoMeter float, 
+  windVane float, 
+  currentSensor float, 
+  rainIntensity float, 
+  rainStatus float
+ )
   `, function(err, result){
     console.log("Database Gisting Connected");
   });
@@ -51,15 +52,15 @@ api.use('/', cors(), gisting_appRoute);
 
 api.use('/', cors(), (req, res) => {
     res.status(404);
-    res.send('404 Not Found'); // respond 404 if not available
+    res.send('API SUDAH ONLINE | 404 Not Found'); // respond 404 if not available
 });  
 
 // Starting both http & https servers
-const httpServer = http.createServer(api);
-//const httpsServer = https.createServer(credentials, api);
+//const httpServer = http.createServer(api);
+const httpsServer = https.createServer(credentials, api);
 //const httpsServer = https.createServer(credentials, api);
 
-httpServer.listen(process.env.API_PORT, () => {
+httpsServer.listen(process.env.API_PORT, () => {
 	console.log(`HTTP REST-API running on port ${process.env.API_PORT}`);
 });
 
