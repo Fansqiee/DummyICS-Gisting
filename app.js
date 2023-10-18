@@ -52,7 +52,7 @@ api.use('/', cors(), gisting_appRoute);
 
 api.use('/', cors(), (req, res) => {
     res.status(404);
-    res.send('API SUDAH ONLINE | 404 Not Found'); // respond 404 if not available
+    res.send('API SUDAH ONLINE | GISTING BACKEND '); // respond 404 if not available
 });  
 
 // Starting both http & https servers
@@ -74,7 +74,7 @@ const topic = process.env.TOPIC;
 const mqtt_connect = require('./mqtt_config.js')
 const {incomingData} = require('./controler_mqtt.js') 
   // Subscribe topic to receive data from raspberryPi
-  // Data From Canti
+  // Data From Gisting
 //Subscribe topic to receive API request
 mqtt_connect.subscribe(topic, (err) => {
   if (!err) {
