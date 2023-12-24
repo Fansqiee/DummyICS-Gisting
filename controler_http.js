@@ -16,25 +16,9 @@ const dbase_rest= new Pool({
 dbase_rest.connect();
 module.exports = {
 
-    // HTTP HANDLING
-
-    // Respond request to give latest 100 data
-    async getDataGisting(req, res) {
-        data = await dbase_rest.query(`SELECT datetime, humidity_280, pressure_280, temperature_280, temperature_388, pressure_388, phsensor, tdsSensor, moistureSensor, anemoMeter, windVane, currentSensor, rainIntensity, rainStatus 
-        FROM sensor_data ORDER BY datetime DESC LIMIT 100`);
-
-        res.status(200);
-        res.send({
-            count:data.rowCount,
-            result:data.rows.reverse(),
-        })
-        console.log("[ REST-API ] GET DATA 100");
-
-    },
-
     async getDataGistingNew(req, res) {
-        const data = await dbase_rest.query(`SELECT datetime, humidity_280, pressure_280, temperature_280, temperature_388, pressure_388, phsensor, tdsSensor, moistureSensor, anemoMeter, windVane, currentSensor, rainIntensity, rainStatus 
-            FROM sensor_data ORDER BY datetime DESC LIMIT 100`);
+        const data = await dbase_rest.query(`SELECT datetime, soilmoisture_1, soilmoisture_2, soilmoisture_3, waterflow_1, waterflow_2, waterflow_3, waterflow_4, waterflow_5, waterflow_6, waterflow_7, waterflow_8, waterflow_9, waterflow_10, waterflow_11, waterflow_12, weight, infrared_1, infrared_2, anemo, winddirect, dht, ph, suhuair, tdsmeter, raingauge
+        FROM gistingics ORDER BY datetime DESC LIMIT 100`);
     
         if (data.rowCount > 0) {
             const combinedArray = data.rows.map(row => {

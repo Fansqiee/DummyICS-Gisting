@@ -7,83 +7,83 @@ TOPIC_GISTING = process.env.TOPIC;
 
 
 TS_PATH = process.env.PAYLOAD_GISTING_TS
-HUMIDITY280_PATH = process.env.PAYLOAD_GISTING_HUMIDITY_280
-PRESSURE280_PATH = process.env.PAYLOAD_GISTING_PRESSURE_280
-TEMPERATURE280_PATH = process.env.PAYLOAD_GISTING_TEMPERATURE_280
-TEMPERATURE388_PATH = process.env.PAYLOAD_GISTING_TEMPERATURE_388
-PRESSURE388_PATH = process.env.PAYLOAD_GISTING_PRESSURE_388
-PHSENSOR_PATH = process.env.PAYLOAD_GISTING_PHSENSOR
-TDSSENSOR_PATH = process.env.PAYLOAD_GISTING_TDSSENSOR
-MOISTURESENSOR_PATH = process.env.PAYLOAD_GISTING_MOISTURESENSOR
-ANEMOMETER_PATH = process.env.PAYLOAD_GISTING_ANEMOMETER
-WINDVANE_PATH = process.env.PAYLOAD_GISTING_WINDVANE
-CURRENTSENSOR_PATH = process.env.PAYLOAD_GISTING_CURRENTSENSOR
-RAININTENSITY_PATH = process.env.PAYLOAD_GISTING_RAININTENSITY
-RAINSTATUS_PATH = process.env.PAYLOAD_GISTING_RAINSTATUS
+SOILMOISTURE1_PATH = process.env.PAYLOAD_GISTING_SOILMOISTURE_1
+SOILMOISTURE2_PATH = process.env.PAYLOAD_GISTING_SOILMOISTURE_2
+SOILMOISTURE3_PATH = process.env.PAYLOAD_GISTING_SOILMOISTURE_3
+WATERFLOW1_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_1
+WATERFLOW2_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_2
+WATERFLOW3_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_3
+WATERFLOW4_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_4
+WATERFLOW5_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_5
+WATERFLOW6_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_6
+WATERFLOW7_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_7
+WATERFLOW8_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_8
+WATERFLOW9_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_9
+WATERFLOW10_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_10
+WATERFLOW11_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_11
+WATERFLOW12_PATH = process.env.PAYLOAD_GISTING_WATERFLOW_12
+WEIGHT_PATH = process.env.PAYLOAD_GISTING_WEIGHT
+INFRARED1_PATH = process.env.PAYLOAD_GISTING_INFRARED_1
+INFRARED2_PATH = process.env.PAYLOAD_GISTING_INFRARED_2
+ANEMO_PATH = process.env.PAYLOAD_GISTING_ANEMO
+WINDDIRECTION_PATH = process.env.PAYLOAD_GISTING_WINDDIRECTION
+DHT_PATH = process.env.PAYLOAD_GISTING_DHT
+PH_PATH = process.env.PAYLOAD_GISTING_PH
+SUHUAIR_PATH = process.env.PAYLOAD_GISTING_SUHUAIR
+TDSMETER_PATH = process.env.PAYLOAD_GISTING_TDSMETER
+RAINGAUGE_PATH = process.env.PAYLOAD_GISTING_RAINGAUGE
 
-var { TS, HUMIDITY280, PRESSURE280, TEMPERATURE280, TEMPERATURE388, PRESSURE388, PHSENSOR, TDSSENSOR, MOISTURESENSOR, ANEMOMETER, WINDVANE, CURRENTSENSOR, RAININTENSITY, RAINSTATUS } = [];
 
 module.exports = {
         // MQTT HANDLING
             async incomingData(topic,message){
             if (topic === TOPIC_GISTING){
                 const payload = JSON.parse(message.toString());
-        
-                // Checking property of Time, Date, and Waterlevel. so it will never null
-                if ((payload.hasOwnProperty(TS_PATH))
-                    && (payload.hasOwnProperty(HUMIDITY280_PATH))
-                    && (payload.hasOwnProperty(PRESSURE280_PATH))
-                    && (payload.hasOwnProperty(TEMPERATURE280_PATH))
-                    && (payload.hasOwnProperty(TEMPERATURE388_PATH))
-                    && (payload.hasOwnProperty(PRESSURE388_PATH))
-                    && (payload.hasOwnProperty(PHSENSOR_PATH))
-                    && (payload.hasOwnProperty(TDSSENSOR_PATH))
-                    && (payload.hasOwnProperty(MOISTURESENSOR_PATH))
-                    && (payload.hasOwnProperty(ANEMOMETER_PATH))
-                    && (payload.hasOwnProperty(WINDVANE_PATH))
-                    && (payload.hasOwnProperty(CURRENTSENSOR_PATH))
-                    && (payload.hasOwnProperty(RAININTENSITY_PATH))
-                    && (payload.hasOwnProperty(RAINSTATUS_PATH))
-                ) {
-                    if ((payload[TS_PATH] != null)
-                        && (payload[HUMIDITY280_PATH] != null)
-                        && (payload[PRESSURE280_PATH] != null)
-                        && (payload[TEMPERATURE280_PATH] != null)
-                        && (payload[TEMPERATURE388_PATH] != null)
-                        && (payload[PRESSURE388_PATH] != null)
-                        && (payload[PHSENSOR_PATH] != null)
-                        && (payload[TDSSENSOR_PATH] != null)
-                        && (payload[MOISTURESENSOR_PATH] != null)
-                        && (payload[ANEMOMETER_PATH] != null)
-                        && (payload[WINDVANE_PATH] != null)
-                        && (payload[CURRENTSENSOR_PATH] != null)
-                        && (payload[RAININTENSITY_PATH] != null)
-                        && (payload[RAINSTATUS_PATH] != null)
-                    ) {
+             
+            {
                         // Save Payload to variable
                         TS = payload[TS_PATH];
-                        HUMIDITY280 = parseFloat(payload[HUMIDITY280_PATH]);
-                        PRESSURE280 = parseFloat(payload[PRESSURE280_PATH]);
-                        TEMPERATURE280 = parseFloat(payload[TEMPERATURE280_PATH]);
-                        TEMPERATURE388 = parseFloat(payload[TEMPERATURE388_PATH]);
-                        PRESSURE388 = parseFloat(payload[PRESSURE388_PATH]);
-                        PHSENSOR = parseFloat(payload[PHSENSOR_PATH]);
-                        TDSSENSOR = parseFloat(payload[TDSSENSOR_PATH]);
-                        MOISTURESENSOR = parseFloat(payload[MOISTURESENSOR_PATH]);
-                        ANEMOMETER = parseFloat(payload[ANEMOMETER_PATH]);
-                        WINDVANE = parseFloat(payload[WINDVANE_PATH]);
-                        CURRENTSENSOR = parseFloat(payload[CURRENTSENSOR_PATH]);
-                        RAININTENSITY = parseFloat(payload[RAININTENSITY_PATH]);
-                        RAINSTATUS = parseFloat(payload[RAINSTATUS_PATH]);
+                        SOILMOISTURE1 = parseFloat(payload[SOILMOISTURE1_PATH]);
+                        SOILMOISTURE2 = parseFloat(payload[SOILMOISTURE2_PATH]);
+                        SOILMOISTURE3 = parseFloat(payload[SOILMOISTURE3_PATH]);
+                        WATERFLOW1 = parseFloat(payload[WATERFLOW1_PATH]);
+                        WATERFLOW2 = parseFloat(payload[WATERFLOW2_PATH]);
+                        WATERFLOW3 = parseFloat(payload[WATERFLOW3_PATH]);
+                        WATERFLOW4 = parseFloat(payload[WATERFLOW4_PATH]);
+                        WATERFLOW5 = parseFloat(payload[WATERFLOW5_PATH]);
+                        WATERFLOW6 = parseFloat(payload[WATERFLOW6_PATH]);
+                        WATERFLOW7 = parseFloat(payload[WATERFLOW7_PATH]);
+                        WATERFLOW8 = parseFloat(payload[WATERFLOW8_PATH]);
+                        WATERFLOW9 = parseFloat(payload[WATERFLOW9_PATH]);
+                        WATERFLOW10 = parseFloat(payload[WATERFLOW10_PATH]);
+                        WATERFLOW11 = parseFloat(payload[WATERFLOW11_PATH]);
+                        WATERFLOW12 = parseFloat(payload[WATERFLOW12_PATH]);
+                        WEIGHT = parseFloat(payload[WEIGHT_PATH]);
+                        INFRARED1 = parseFloat(payload[INFRARED1_PATH]);
+                        INFRARED2 = parseFloat(payload[INFRARED2_PATH]);
+                        ANEMO = parseFloat(payload[ANEMO_PATH]);
+                        WINDDIRECTION = parseFloat(payload[WINDDIRECTION_PATH]);
+                        DHT = parseFloat(payload[DHT_PATH]);
+                        PH = parseFloat(payload[PH_PATH]);
+                        SUHUAIR = parseFloat(payload[SUHUAIR_PATH]);
+                        TDSMETER = parseFloat(payload[TDSMETER_PATH]);
+                        RAINGAUGE = parseFloat(payload[RAINGAUGE_PATH]);
+                       
                     }
         
                 }
-                const dataArray = [TS, HUMIDITY280, PRESSURE280, TEMPERATURE280, TEMPERATURE388, PRESSURE388, PHSENSOR, TDSSENSOR, MOISTURESENSOR, ANEMOMETER, WINDVANE, CURRENTSENSOR, RAININTENSITY, RAINSTATUS];
-                const insertQuery = `INSERT INTO sensor_data (datetime, humidity_280, pressure_280, temperature_280, temperature_388, pressure_388, phsensor, tdsSensor, moistureSensor, anemoMeter, windVane, currentSensor, rainIntensity, rainStatus) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`;
+                const dataArray = [TS,SOILMOISTURE1, SOILMOISTURE2, SOILMOISTURE3, WATERFLOW1, WATERFLOW2, WATERFLOW3, WATERFLOW4, WATERFLOW5, WATERFLOW6, WATERFLOW7, WATERFLOW8, WATERFLOW9, WATERFLOW10, WATERFLOW11, WATERFLOW12, WEIGHT, INFRARED1, INFRARED2, ANEMO, WINDDIRECTION, DHT, PH, SUHUAIR, TDSMETER, RAINGAUGE];
+ 
+                const insertQuery = `INSERT INTO gistingics (datetime, soilmoisture_1, soilmoisture_2, soilmoisture_3, waterflow_1, waterflow_2, waterflow_3, waterflow_4, waterflow_5, waterflow_6, waterflow_7, waterflow_8, waterflow_9, waterflow_10, waterflow_11, waterflow_12, weight, infrared_1, infrared_2, anemo, winddirect, dht, ph, suhuair, tdsmeter, raingauge) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26)`;
+
+                
                 dbase_mqtt.query(insertQuery, dataArray, (err, res) => {
-                    if (err) throw err;
-                 console.log(`DATA INSERTED TO DATABASE: Time - ${TS}, HMDTY 280 - ${HUMIDITY280}, PRSS 280 - ${PRESSURE280}, TEMP 280 - ${TEMPERATURE280}, TEMP 388 - ${TEMPERATURE388}, PRSS 388 - ${PRESSURE388}, PH - ${PHSENSOR}, TDS - ${TDSSENSOR}, MOIS - ${MOISTURESENSOR}, AMeter - ${ANEMOMETER}, WVane - ${WINDVANE}, CRNT - ${CURRENTSENSOR}, RIntensity - ${RAININTENSITY}, RStatus - ${RAINSTATUS}`);
-                });
+                    if (err) {
+                        console.error('Error inserting data into the database:', err);
+                    } else {
+                 console.log(`DATA INSERTED TO DATABASE: Time - ${TS}, SOILMOISTURE 1 - ${SOILMOISTURE1}, SOILMOISTURE 2 - ${SOILMOISTURE2}, SOILMOISTURE 3 - ${SOILMOISTURE3}, WATERFLOW 1 - ${WATERFLOW1}, WATERFLOW 2 - ${WATERFLOW2}, WATERFLOW 3 - ${WATERFLOW3}, WATERFLOW 4 - ${WATERFLOW4}, WATERFLOW 5 - ${WATERFLOW5}, WATERFLOW 6 - ${WATERFLOW6}, WATERFLOW 7- ${WATERFLOW7}, WATERFLOW 8 - ${WATERFLOW8}, WATERFLOW 9 - ${WATERFLOW9}, WATERFLOW 10 - ${WATERFLOW10}, WATERFLOW 11 - ${WATERFLOW11}, WATERFLOW 12 - ${WATERFLOW12}, WEIGHT - ${WEIGHT}, INFRARED 1 - ${INFRARED1}, INFRARED 2 - ${INFRARED2}, ANEMO - ${ANEMO}, WINDDIRECTION - ${WINDDIRECTION}, DHT - ${DHT}, PH - ${PH}, SUHUAIR - ${SUHUAIR}, TDSMETER - ${TDSMETER}, RAINGAUGE - ${RAINGAUGE}`);
+                }
             }
-        }
+                )}
 }
+        
